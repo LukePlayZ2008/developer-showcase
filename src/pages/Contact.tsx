@@ -1,13 +1,34 @@
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Mail, Send } from "lucide-react";
 import ContactForm from "@/components/sections/ContactForm";
 import { personalInfo } from "@/data/portfolio-data";
 
+// Custom icons for TikTok and Facebook
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
+  </svg>
+);
+
+const FacebookIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+  </svg>
+);
+
 const Contact = () => {
   const socialLinks = [
-    { icon: Github, href: personalInfo.social.github, label: "GitHub" },
-    { icon: Linkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
-    { icon: Send, href: personalInfo.social.telegram, label: "Telegram" },
-    { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
+    { icon: TikTokIcon, href: personalInfo.social.tiktok, label: "TikTok", handle: "@codebyluke" },
+    { icon: FacebookIcon, href: personalInfo.social.facebook, label: "Facebook", handle: "@codebyluke" },
+    { icon: Send, href: personalInfo.social.telegram, label: "Telegram", handle: "@Luke_PlayZ" },
+    { icon: Mail, href: `mailto:${personalInfo.emails.primary}`, label: "Email", handle: personalInfo.emails.primary },
   ];
 
   return (
@@ -49,12 +70,24 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">{social.label}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {social.label === "Email" ? personalInfo.email : `@${social.href.split("/").pop()}`}
-                    </p>
+                    <p className="text-sm text-muted-foreground">{social.handle}</p>
                   </div>
                 </a>
               ))}
+
+              {/* Secondary email */}
+              <a
+                href={`mailto:${personalInfo.emails.secondary}`}
+                className="flex items-center gap-4 p-4 rounded-lg border bg-card hover:bg-muted transition-colors group"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <Mail className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Email (Personal)</p>
+                  <p className="text-sm text-muted-foreground">{personalInfo.emails.secondary}</p>
+                </div>
+              </a>
             </div>
           </div>
         </div>

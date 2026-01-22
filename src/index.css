@@ -103,3 +103,105 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* 3D Cube Styles */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.cube {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  transform-style: preserve-3d;
+}
+
+.cube-face {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 2px solid hsl(var(--primary) / 0.3);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.1) 0%,
+    hsl(var(--primary) / 0.05) 100%
+  );
+  backdrop-filter: blur(4px);
+}
+
+.cube-front {
+  transform: translateZ(40px);
+}
+
+.cube-back {
+  transform: rotateY(180deg) translateZ(40px);
+}
+
+.cube-left {
+  transform: rotateY(-90deg) translateZ(40px);
+}
+
+.cube-right {
+  transform: rotateY(90deg) translateZ(40px);
+}
+
+.cube-top {
+  transform: rotateX(90deg) translateZ(40px);
+}
+
+.cube-bottom {
+  transform: rotateX(-90deg) translateZ(40px);
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes rotate-slow {
+  0% {
+    transform: rotateX(-20deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 3.5s ease-in-out infinite 0.5s;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 8s linear infinite;
+}

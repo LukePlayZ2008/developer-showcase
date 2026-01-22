@@ -1,12 +1,10 @@
 import Hero from "@/components/sections/Hero";
-import FeaturedProjects from "@/components/sections/FeaturedProjects";
 
 const Index = () => {
   return (
-    <>
+    <div>
       <Hero />
-      <FeaturedProjects />
-    </>
+    </div>
   );
 };
 
