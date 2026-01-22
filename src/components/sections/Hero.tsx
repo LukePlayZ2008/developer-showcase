@@ -8,9 +8,12 @@ const Hero = () => {
     <section className="container mx-auto px-4 py-20 md:py-32">
       <div className="max-w-3xl">
         <p className="text-primary font-medium mb-4">Hi, my name is</p>
-        <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-2">
           {personalInfo.name}
         </h1>
+        <p className="text-xl md:text-2xl text-muted-foreground mb-4">
+          Also known as <span className="text-primary font-semibold">{personalInfo.displayName}</span>
+        </p>
         <h2 className="text-3xl md:text-5xl font-bold text-muted-foreground mb-6">
           {personalInfo.title}
         </h2>
