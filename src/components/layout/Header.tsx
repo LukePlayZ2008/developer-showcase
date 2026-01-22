@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { navLinks, personalInfo } from "@/data/portfolio-data";
+import { navLinks } from "@/data/portfolio-data";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -16,9 +16,12 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-foreground">
-          {personalInfo.displayName}
-          <span className="text-primary">.</span>
+        <Link to="/" className="flex items-center">
+          <img
+            src="/logo.png"
+            alt="Luke Logo"
+            className="h-8 w-auto transition-opacity hover:opacity-80"
+          />
         </Link>
 
         {/* Desktop Navigation */}
