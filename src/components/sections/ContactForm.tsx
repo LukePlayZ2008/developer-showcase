@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
   name: z
@@ -36,6 +39,8 @@ const contactSchema = z.object({
 type ContactFormValues = z.infer<typeof contactSchema>;
 
 const ContactForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -45,13 +50,34 @@ const ContactForm = () => {
     },
   });
 
-  const onSubmit = (data: ContactFormValues) => {
-    // Form UI only - no backend integration
-    console.log("Form submitted:", data);
-    toast.success("Message sent successfully!", {
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    form.reset();
+  const onSubmit = async (data: ContactFormValues) => {
+    setIsSubmitting(true);
+    
+    try {
+      const { data: response, error } = await supabase.functions.invoke('send-contact-message', {
+        body: {
+          name: data.name,
+          email: data.email,
+          message: data.message,
+        },
+      });
+
+      if (error) {
+        throw new Error(error.message || 'Failed to send message');
+      }
+
+      toast.success("Message sent successfully!", {
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      form.reset();
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast.error("Failed to send message", {
+        description: "Please try again later or contact me directly via email.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -64,7 +90,7 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Your name" {...field} />
+                <Input placeholder="Your name" disabled={isSubmitting} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -78,7 +104,7 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="your@email.com" {...field} />
+                <Input type="email" placeholder="your@email.com" disabled={isSubmitting} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -95,6 +121,7 @@ const ContactForm = () => {
                 <Textarea
                   placeholder="Your message..."
                   className="min-h-[150px] resize-none"
+                  disabled={isSubmitting}
                   {...field}
                 />
               </FormControl>
@@ -103,8 +130,15 @@ const ContactForm = () => {
           )}
         />
 
-        <Button type="submit" className="w-full">
-          Send Message
+        <Button type="submit" className="w-full" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Sending...
+            </>
+          ) : (
+            "Send Message"
+          )}
         </Button>
       </form>
     </Form>
