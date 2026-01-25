@@ -1,8 +1,9 @@
 import { Heart, Sparkles } from "lucide-react";
-
+import MusicPlayer from "@/components/anni/MusicPlayer";
 const LoveLetterPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-red-50 dark:from-rose-950 dark:via-pink-950 dark:to-red-950 relative overflow-hidden">
+      <MusicPlayer />
       {/* Floating hearts background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(8)].map((_, i) => (

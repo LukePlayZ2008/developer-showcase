@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Heart, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import MusicPlayer from "@/components/anni/MusicPlayer";
 const photos = [
   "/photo1.jpg",
   "/photo2.jpg",
@@ -12,6 +12,7 @@ const photos = [
 const AnniversaryPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-red-50 dark:from-rose-950 dark:via-pink-950 dark:to-red-950 relative overflow-hidden">
+      <MusicPlayer />
       {/* Floating hearts background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(12)].map((_, i) => (
