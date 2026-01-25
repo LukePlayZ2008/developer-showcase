@@ -9,6 +9,8 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import AnniversaryPage from "./pages/anni/AnniversaryPage";
+import LoveLetterPage from "./pages/anni/LoveLetterPage";
 
 const queryClient = new QueryClient();
 
@@ -18,16 +20,19 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
+        <Routes>
+          {/* Hidden Anniversary Routes - No Layout wrapper */}
+          <Route path="/project/anni" element={<AnniversaryPage />} />
+          <Route path="/project/anni/love-letter" element={<LoveLetterPage />} />
+          
+          {/* Main Portfolio Routes with Layout */}
+          <Route path="/" element={<Layout><Index /></Layout>} />
+          <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/projects" element={<Layout><Projects /></Layout>} />
+          <Route path="/contact" element={<Layout><Contact /></Layout>} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<Layout><NotFound /></Layout>} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
