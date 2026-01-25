@@ -2,17 +2,15 @@ import { Link } from "react-router-dom";
 import { Heart, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MusicPlayer from "@/components/anni/MusicPlayer";
-const photos = [
-  "/photo1.jpg",
-  "/photo2.jpg",
-  "/photo3.jpg",
-  "/photo4.jpg",
-];
+import FallingPetals from "@/components/anni/FallingPetals";
+import PhotoSlideshow from "@/components/anni/PhotoSlideshow";
 
 const AnniversaryPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-red-50 dark:from-rose-950 dark:via-pink-950 dark:to-red-950 relative overflow-hidden">
       <MusicPlayer />
+      <FallingPetals />
+      
       {/* Floating hearts background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(12)].map((_, i) => (
@@ -49,31 +47,8 @@ const AnniversaryPage = () => {
           </p>
         </div>
 
-        {/* Photo Gallery */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <div className="grid grid-cols-2 gap-4 md:gap-6">
-            {photos.map((photo, index) => (
-              <div
-                key={index}
-                className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 animate-scale-in"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={photo}
-                    alt={`Memory ${index + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-rose-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <Heart
-                  className="absolute bottom-3 right-3 w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
-                  fill="currentColor"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Photo Slideshow */}
+        <PhotoSlideshow />
 
         {/* Love Letter Button */}
         <div className="text-center animate-fade-in" style={{ animationDelay: "600ms" }}>

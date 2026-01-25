@@ -205,3 +205,25 @@ All colors MUST be HSL.
 .animate-rotate-slow {
   animation: rotate-slow 8s linear infinite;
 }
+
+/* Falling Petals Animation */
+@keyframes falling-petal {
+  0% {
+    transform: translateY(-100px) rotate(0deg) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg) translateX(100px);
+    opacity: 0;
+  }
+}
+
+.animate-falling-petal {
+  animation: falling-petal linear infinite;
+}
