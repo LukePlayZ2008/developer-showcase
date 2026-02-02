@@ -11,6 +11,10 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import AnniversaryPage from "./pages/anni/AnniversaryPage";
 import LoveLetterPage from "./pages/anni/LoveLetterPage";
+import { AdminAuthProvider } from "./contexts/AdminAuthContext";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -20,19 +24,29 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          {/* Hidden Anniversary Routes - No Layout wrapper */}
-          <Route path="/project/anni" element={<AnniversaryPage />} />
-          <Route path="/project/anni/love-letter" element={<LoveLetterPage />} />
-          
-          {/* Main Portfolio Routes with Layout */}
-          <Route path="/" element={<Layout><Index /></Layout>} />
-          <Route path="/about" element={<Layout><About /></Layout>} />
-          <Route path="/projects" element={<Layout><Projects /></Layout>} />
-          <Route path="/contact" element={<Layout><Contact /></Layout>} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<Layout><NotFound /></Layout>} />
-        </Routes>
+        <AdminAuthProvider>
+          <Routes>
+            {/* Hidden Anniversary Routes - No Layout wrapper */}
+            <Route path="/project/anni" element={<AnniversaryPage />} />
+            <Route path="/project/anni/love-letter" element={<LoveLetterPage />} />
+            
+            {/* Admin Routes - No Layout wrapper */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            
+            {/* Main Portfolio Routes with Layout */}
+            <Route path="/" element={<Layout><Index /></Layout>} />
+            <Route path="/about" element={<Layout><About /></Layout>} />
+            <Route path="/projects" element={<Layout><Projects /></Layout>} />
+            <Route path="/contact" element={<Layout><Contact /></Layout>} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<Layout><NotFound /></Layout>} />
+          </Routes>
+        </AdminAuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
