@@ -60,7 +60,7 @@ const Hero = () => {
                 className="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary/30 to-primary/5 blur-xl"
               />
               <img
-                src={profilePhoto.url}
+                src="/profile-photo.jpg"
                 alt={personalInfo.name}
                 className="relative h-44 w-44 md:h-64 md:w-64 rounded-full object-cover border-4 border-background shadow-xl"
               />

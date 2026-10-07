@@ -48,7 +48,7 @@ const About = () => {
           {/* Profile Image */}
           <div className="flex-shrink-0">
             <img
-              src={profilePhoto.url}
+              src="/profile-photo.jpg"
               alt="Yé Lin Khant"
               className="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover shadow-lg"
             />
