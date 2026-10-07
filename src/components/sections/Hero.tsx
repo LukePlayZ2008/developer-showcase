@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { personalInfo } from "@/data/portfolio-data";
-import profilePhoto from "@/assets/profile-photo.jpg.asset.json";
 
 const Hero = () => {
   return (
