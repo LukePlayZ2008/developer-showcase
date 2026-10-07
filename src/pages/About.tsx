@@ -28,7 +28,7 @@ const timelineData = [
   {
     year: "2024 – Present",
     title: "Formal Education Resumed",
-    description: "Returned to No. 6 Basic Education High School (Hlaing Thar Yar) and completed Grade 8 and 9. Currently studying in Grade 10 with a focus on Economics and Computer Science.",
+    description: "Returned to No. 6 Basic Education High School (Hlaing Thar Yar) and completed Grade 8 through 10. Currently studying in Grade 11 with a focus on Economics and Computer Science.",
     icon: GraduationCap,
   },
   {
@@ -48,7 +48,7 @@ const About = () => {
           {/* Profile Image */}
           <div className="flex-shrink-0">
             <img
-              src="/profile.png"
+              src="/profile-photo.jpg"
               alt="Yé Lin Khant"
               className="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover shadow-lg"
             />
@@ -63,15 +63,15 @@ const About = () => {
             <p className="text-muted-foreground leading-relaxed mb-4">
               I'm <span className="font-medium text-foreground">Yé Lin Khant</span>, 
               also known as <span className="font-medium text-foreground">Luke</span>. 
-              I'm a software developer focused on building clean, modern, and reliable 
-              web applications. I enjoy turning ideas into real, usable products and 
-              continuously improving my skills.
+              I'm a web developer and mobile repair technician focused on building 
+              clean, modern, and reliable web applications. I enjoy turning ideas 
+              into real, usable products and continuously improving my skills.
             </p>
 
             <p className="text-muted-foreground leading-relaxed mb-6">
-              My main interests are frontend development, UI design, and learning how 
-              real-world systems are built. I'm currently studying in high school with 
-              a focus on Economics and Computer Science.
+              My main interests are frontend development, UI design, mobile device 
+              repair, and learning how real-world systems are built. I'm currently 
+              studying in high school with a focus on Economics and Computer Science.
             </p>
 
             {/* Skills */}

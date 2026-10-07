@@ -2,11 +2,11 @@
 export const personalInfo = {
   name: "Yé Lin Khant",
   displayName: "Luke",
-  title: "Software Developer",
+  title: "Web Developer & Mobile Repair Technician",
   tagline: "Building clean, modern, and reliable web applications",
   location: "Myanmar",
   emails: {
-    primary: "master@lunarblaze.site",
+    primary: "a@leemail.asia",
     secondary: "lukepersonal69@gmail.com",
   },
   bio: "I'm a passionate software developer focused on building clean, modern, and reliable web applications. I enjoy turning ideas into functional, user-friendly products using the latest web technologies. My goal is to create software that not only works well but also delivers a great experience.",
