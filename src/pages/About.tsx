@@ -1,4 +1,5 @@
 import { GraduationCap, Baby, BookOpen, Lightbulb, Wrench, Calendar } from "lucide-react";
+import profilePhoto from "@/assets/profile-photo.jpg.asset.json";
 
 const timelineData = [
   {
